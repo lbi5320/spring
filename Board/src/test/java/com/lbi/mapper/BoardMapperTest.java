@@ -1,9 +1,5 @@
 package com.lbi.mapper;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
-
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -11,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.lbi.model.BoardVO;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
@@ -20,7 +18,27 @@ public class BoardMapperTest {
 	private BoardMapper mapper;
 	
 	
+	@Test
+    public void testDelete() {
+        
+        int result = mapper.delete(23);
+        log.info("result : " + result);
+        
+    }
 	
+
+	/*
+	 * 게시판 수정
+	 * 
+	 * @Test public void testModify() {
+	 * 
+	 * BoardVO board = new BoardVO(); board.setBno(48); board.setTitle("수정 제목");
+	 * board.setContent("수정 내용");
+	 * 
+	 * int result = mapper.modify(board); log.info("result : " +result);
+	 * 
+	 * }
+	 */
 
 	/* 게시판 조회 */
 	/*

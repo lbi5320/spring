@@ -19,6 +19,19 @@
          select * from lbi_board where bno = #{bno}
      </select>
      
+      <!-- 게시판 수정 -->
+    <update id="modify">
+        update lbi_board set title = #{title}, content = #{content}, updatedate = sysdate where bno = #{bno}
+    </update>
+     
+     
+     <!-- 게시판 삭제 -->
+    <delete id="delete">
+    
+        delete from lbi_board where bno = #{bno}
+    
+    </delete>
+ 
      
      
      
