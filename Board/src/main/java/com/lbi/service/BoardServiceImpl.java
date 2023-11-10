@@ -44,6 +44,16 @@ public class BoardServiceImpl implements BoardService{
     public List<BoardVO> getListPaging(Criteria cri) {
         
         return mapper.getListPaging(cri);
+    }
+
+    /* °Ô½Ã¹° ÃÑ °¹¼ö */
+    @Override
+    public int getTotal() {
+        
+        return mapper.getTotal();
     }    
+
+    
+  
  
 }

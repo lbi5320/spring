@@ -52,4 +52,11 @@
      
      
      
+    <!-- 게시물 총 갯수 -->
+    <select id="getTotal" resultType="int">
+    
+        select count(*) from lbi_board
+    
+    </select>
+     
   </mapper>
