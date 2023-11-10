@@ -83,6 +83,7 @@ textarea{
 	</div>
 	<form id="infoForm" action="/board/modify" method="get">
 		<input type="hidden" id="bno" name="bno" value='<c:out value="${pageInfo.bno}"/>'>
+		<input type="hidden" name="keyword" value="${cri.keyword }">    
 	</form>
 <script>
 	let form = $("#infoForm");
