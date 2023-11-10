@@ -32,6 +32,23 @@
     
     </delete>
  
+ 
+   <!-- 게시물 목록(페이징) -->
+    <select id="getListPaging" resultType="com.lbi.model.BoardVO">
+    
+    <![CDATA[
+        
+        select bno, title, content, writer, regdate, updatedate from(
+        
+                select /*+INDEX_DESC(lbi_board pk_board) */ rownum  as rn, bno, title, content, writer, regdate, updatedate
+                  
+                from lbi_board where rownum <= #{pageNum} * #{amount}) 
+                
+        where rn > (#{pageNum} -1) * #{amount}
+    
+    ]]>
+    
+    </select>
      
      
      

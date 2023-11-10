@@ -1,5 +1,9 @@
 package com.lib.service;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.log;
+
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -8,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.lbi.model.BoardVO;
+import com.lbi.model.Criteria;
 import com.lbi.service.BoardService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,17 +24,30 @@ public class BoardServiceTest {
 	@Autowired
 	private BoardService service;
 	
-	 /* 게시판 삭제 */
+
+    /* 게시판 조회(페이징 적용) */
     @Test
-    public void testDelete() {
-        int result = service.delete(1);
-        log.info("result : " + result);
+    public void testGetListPaging() {
+        
+        Criteria cri = new Criteria();
+        
+        List list = service.getListPaging(cri);
+        
+        list.forEach(board -> log.info("" + board));
+        
         
     }
-
-
+ 
 	
-	
+
+	/*
+	 * 게시판 삭제
+	 * 
+	 * @Test public void testDelete() { int result = service.delete(1);
+	 * log.info("result : " + result);
+	 * 
+	 * }
+	 */
 
 	/*
 	 * 게시판 수정

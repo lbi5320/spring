@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.lbi.mapper.BoardMapper;
 import com.lbi.model.BoardVO;
+import com.lbi.model.Criteria;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -37,4 +38,12 @@ public class BoardServiceImpl implements BoardService{
 	public int delete(int bno) {
 		return mapper.delete(bno);
 	}
+
+	/* 게시판 목록(페이징 적용) */
+    @Override
+    public List<BoardVO> getListPaging(Criteria cri) {
+        
+        return mapper.getListPaging(cri);
+    }    
+ 
 }
