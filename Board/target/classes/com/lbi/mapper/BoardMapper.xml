@@ -31,9 +31,34 @@
         delete from lbi_board where bno = #{bno}
     
     </delete>
+    
+    
+     <!-- 검색 조건문 -->
+    <sql id="criteria">
+        <trim prefix="AND (" suffix=")" prefixOverrides="OR">
+            <foreach collection="typeArr" item="type">
+                <trim prefix="OR">
+                    <choose>
+                        <when test="type == 'T'.toString()">
+                            title like '%'||#{keyword}||'%' 
+                        </when>
+                        <when test="type == 'C'.toString()">
+                            content like '%'||#{keyword}||'%' 
+                        </when>
+                        <when test="type == 'W'.toString()">
+                            writer like '%'||#{keyword}||'%' 
+                        </when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    
+    </sql>
  
- 
- <select id="getListPaging" resultType="com.lbi.model.BoardVO">
+  
+  
+     <!-- 게시물 목록(페이징) -->
+    <select id="getListPaging" resultType="com.lbi.model.BoardVO">
     
     <![CDATA[
         
@@ -44,7 +69,7 @@
                 from lbi_board where rownum <= #{pageNum} * #{amount} 
     ]]>            
                 <if test="keyword != null">
-                    and title like '%'||#{keyword}||'%' 
+                    <include refid="criteria"></include> 
                 </if>
     
     <![CDATA[
@@ -56,23 +81,22 @@
     ]]>
     
     </select>
- 
-     
-     
-     
-	<!-- 게시물 총 갯수 -->
+  
+  
+	 
+	
+    <!-- 게시물 총 개숫 -->
     <select id="getTotal" resultType="int">
     
         select count(*) from lbi_board
         
         <if test="keyword != null">
         
-            <!-- Oracle -->
-            where title like '%'||#{keyword}||'%'
+            where bno > 0 <include refid="criteria"></include>
         
         </if>
     
-    </select>
+    </select>   
  
 
      

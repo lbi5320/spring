@@ -42,7 +42,6 @@ public class BoardServiceImpl implements BoardService{
 	/* 게시판 목록(페이징 적용) */
     @Override
     public List<BoardVO> getListPaging(Criteria cri) {
-        
         return mapper.getListPaging(cri);
     }
 
